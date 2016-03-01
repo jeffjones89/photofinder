@@ -7,7 +7,8 @@ var sendgrid = require('sendgrid')(config.sendgrid.key);
 var Visitor = require('./db/schema');
 var request = require('request');
 var fcKey = config.fullContact.key;
-var fcController = require('./controllers/fullContactController.js');
+var fcController = require('./controllers/fullContactController');
+var employeeController = require('./controllers/employeeController');
 //default email for testing
 var email = new sendgrid.Email({
   to: "jeff.jones1@gmail.com",
@@ -39,7 +40,8 @@ app.get('/', function(req, res) {
 var router = express.Router();
 router.route('/api/fullcontact/visitors')
   .post(fcController.getVisitorInfo);
-
+router.route('/api/employees')
+  .post(employeeController.postVisitors)
 app.use('/', router);
 
 // sendgrid.send(email, function(err, json){

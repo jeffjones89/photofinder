@@ -5,6 +5,7 @@
     <title>PhotoSender</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <script src="/js/app.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="/css/main.css" media="screen" charset="utf-8">
   </head>
   <body>
     <div class="wrapper">
@@ -12,11 +13,22 @@
         <h1>PhotoFinder</h1>
       </header>
       <div class="main-body">
-        <div class="form">
-          <input type="text" name="email" placeholder="Enter email">
-          <button type="button" name="submit">Submit</button>
+        <div class="emaildiv">
+          <form id="emailForm" action="/api/fullcontact/visitors" method="post">
+            <input type="email" name="email" placeholder="Enter email">
+            <button type="submit">Submit</button>
+          </form>
         </div>
-
+        <button type="button" name="addEmployee">Add New Employee</button>
+        <div class="newEmployee">
+          <form id = "newBCE" action="/api/employees" method="post">
+              <input id ="firstName" type= "text" value = "Jeff">
+              <input id ="lastName" type= "text" value = "Jones">
+              <input id ="email" type= "text" value = "jeff.jones1@gmail.com">
+              <input id ="photos" type="text" value = "https://media.licdn.com/media/p/3/000/27a/291/3ed952e.jpg">
+              <input type="submit" value="Save">
+          </form>
+        </div>
       </div>
     </div>
   </body>

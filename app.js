@@ -34,6 +34,8 @@ console.log('Now listening for visitors on port ' + port);
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname + '/client/index.html'));
 })
+
+//initialize express router and generate post route
 var router = express.Router();
 router.route('/api/fullcontact/visitors')
   .post(fcController.getVisitorInfo);

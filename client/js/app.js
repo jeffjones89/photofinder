@@ -11,7 +11,7 @@ $(document).ready(function() {
         email: email
       }
     }).done(function(response) {
-      console.log(response);
+      console.log(response.photos);
     });
   });
   //display new employee form

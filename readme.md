@@ -12,3 +12,4 @@ Ensure an instance of mongod is running in background.
 ```
 nodemon
 ```
+Will need own API keys for querying. 

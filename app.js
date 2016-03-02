@@ -8,6 +8,8 @@ var Visitor = require('./db/schema');
 var request = require('request');
 var fcKey = config.fullContact.key;
 var fcController = require('./controllers/fullContactController.js');
+var client = require('twilio')(config.TWILIO_ACCOUNT_SID, config.TWILIO_AUTH_TOKEN);
+
 //default email for testing
 var email = new sendgrid.Email({
   to: "jeff.jones1@gmail.com",
@@ -15,6 +17,7 @@ var email = new sendgrid.Email({
   subject: "testing",
   text: "Testing Sendgrid"
 });
+
 // initialize mongo connection
 mongoose.connect('mongodb://localhost:27017/visitors');
 var db = mongoose.connection;
@@ -38,6 +41,25 @@ var router = express.Router();
 router.route('/api/fullcontact/visitors')
       .get(fcController.getVisitorInfo);
 app.use('/', router);
+
+// Twilio Message Notifications
+
+app.get('/', function (req, res) {
+  res.send('Twilio Notifications');
+});
+
+app.get('/sendtext', function(req, res){
+  client.sendMessage({
+    from: "15715778472",
+      to: "19178368548",
+    body: "User matches up with database",
+  }, function(err, data){
+    if(err)
+      console.log(err);
+    console.log(data);
+  });
+});
+
 
 // sendgrid.send(email, function(err, json){
 //   if(err) {return console.error(err); }

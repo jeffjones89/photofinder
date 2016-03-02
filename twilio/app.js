@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
-var client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
+var config = require('../config.js');
+var client = require('twilio')(config.TWILIO_ACCOUNT_SID, config.TWILIO_AUTH_TOKEN);
 
 
 app.get('/', function (req, res) {
